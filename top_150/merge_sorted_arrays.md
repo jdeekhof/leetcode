@@ -20,10 +20,6 @@ def merge(nums1, m, nums2, n)
     right_pointer = n -1 
     array_pointer = m + n -1
 
-    if left_pointer < 0
-        nums1[0...array_pointer+1] = nums2[0...array_pointer+1]
-        array_pointer=0
-    end
     while array_pointer >= 0 
         if left_pointer < 0
             nums1[0...array_pointer+1] = nums2[0...array_pointer+1]
@@ -44,13 +40,13 @@ end
 ```
 
 #Results
-13 attempts
+14 attempts
 Runtime
-59ms
-Beats 76.13%of users with Ruby
+54ms
+Beats 91.32%of users with Ruby
 Memory
-211.08MB
+211.04MB
 Beats 52.07%of users with Ruby
 
 #Notes
-I think this one took a little longer than I would like. The underlying algorithm is pretty good though since its basically the engine of merge sort.
+I think this one took a little longer than I would like. The underlying algorithm is pretty good though since its basically the engine of merge sort. I realized after that I did not need the initial guard clause since its accounted for inside of the while loop. I improved my original results to above. 
