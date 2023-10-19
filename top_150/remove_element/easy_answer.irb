@@ -1,9 +1,8 @@
-```
 def remove_element(nums, val)
     nums.filter!{|element| element != val}
     return nums.length
 end
-```
+
 # Results
 Runtime 66 ms Beats 43.55%
 Memory 211 MB Beats 47.91%
