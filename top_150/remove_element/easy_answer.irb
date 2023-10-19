@@ -1,0 +1,12 @@
+```
+def remove_element(nums, val)
+    nums.filter!{|element| element != val}
+    return nums.length
+end
+```
+# Results
+Runtime 66 ms Beats 43.55%
+Memory 211 MB Beats 47.91%
+
+# Notes
+This works but only beats a little over half of ruby users. I can improve  it a little

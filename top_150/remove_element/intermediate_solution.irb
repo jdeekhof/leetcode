@@ -1,0 +1,14 @@
+def remove_element(nums, val)
+    nums.each do |element|
+        nums.delete(element) if element == val
+    end
+    return nums.length
+end
+
+# Results
+Runtime 48ms Beats 96.17%
+Memory 211 MB Beats 47.91%
+
+# Notes
+Still pretty easy but I am happy with 90+ percentile for runtime
+
