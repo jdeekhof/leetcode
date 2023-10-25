@@ -1,0 +1,53 @@
+# Solution #1
+def remove_duplicates(nums)
+    i = 0
+    while i < nums.length
+        if nums[i] == nums[i+1]
+            nums.delete_at(i)
+        else
+            i += 1
+        end
+    end
+    return nums.length
+end
+## Notes
+Well, it works, but I can do better: runtime beats only 5% of ruby users
+
+#Solution 2
+nums = Set.new(nums).to_a
+return nums.length
+## Notes
+technically this would work in the real world,
+but it doesn't modify the nums array in place,
+back to the drawing board.
+
+#Solution 2.5
+def remove_duplicates(nums)
+    nums = nums.uniq!
+    return nums&.length
+end
+## Notes
+Basically the same approach as two, but I have improved
+performance by nearly half: runtime beats 18% now
+
+#Solution 3
+def remove_duplicates(nums)
+    return 0 if nums.empty?
+
+    j = 1
+    (1...nums.size).each do |i|
+        if nums[i] != nums[j-1]
+            nums[j] = nums[i]
+            j += 1
+        end
+    end
+    j
+end
+
+## Notes
+This algorithm is pretty cool. It runs through integers
+representing an index. It will overwrite nums along the way with each
+unique number it encounters.
+## Results
+Runtime: 62ms Beats 89.39% of users
+Memory: 211.72MB Beats 86.17% of users
