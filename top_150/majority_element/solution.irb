@@ -1,0 +1,15 @@
+# Solution 1
+def majority_element(nums)
+    hash = {}
+    nums.each do |num|
+        hash[num] = (hash[num] || 0) + 1
+    end
+    return  hash.max_by{|k,v| v}.first
+end
+## Results
+Runtime 79ms Beats 45.42% of users with Ruby
+Memory 212.50MB Beats 80.60% of users with Ruby
+## Notes
+It works but runtime is really average. I am going to optimize it a little
+
+# Solution 2
