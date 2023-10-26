@@ -13,3 +13,43 @@ Memory 212.50MB Beats 80.60% of users with Ruby
 It works but runtime is really average. I am going to optimize it a little
 
 # Solution 2
+def majority_element(nums)
+    majority = nums.first
+    return majority if nums.length == 1
+    majority_hash = {}
+    nums.each_with_index do |num, i|
+        majority_hash[num] = (majority_hash[num] || 0) + 1
+        if majority_hash[num] > nums.length - i
+            return num
+        elsif (majority_hash[num] / (nums.length).to_f) >= 0.5
+            return num
+        end
+    end
+end
+## Results
+Runtime 75ms Beats 61.83% of users with Ruby
+Memory 212.52MB Beats 33.69%of users with Ruby
+## Notes
+Getting better, but I need to get rid of the division to speed it up more
+
+# Solution 3
+def majority_element(nums)
+    majority = nums.first
+    return majority if nums.length == 1
+    majority_hash = {}
+    nums.each_with_index do |num, i|
+        majority_hash[num] = (majority_hash[num] || 0) + 1
+        if majority_hash[num] > nums.length - i
+            return num
+        elsif (majority_hash[num] == nums.length - i) && (majority_hash[num] / (nums.length).to_f) >= 0.5
+            return num
+        end
+    end
+end
+
+## Results
+Runtime 71ms Beats 76.76% of users with Ruby
+Memory 212.40MB Beats 80.60%of users with Ruby
+## Notes
+I'm starting to see diminishing returns so I will stop here.
+I was able to get here by pushing the expensive division as far out of the happy path as possible.
