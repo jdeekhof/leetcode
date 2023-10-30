@@ -1,0 +1,39 @@
+# First Solution
+def sort_by_bits(arr)
+    set_bits_hash = {}
+    arr.each do |i|
+     set_bits_hash[i] = ("%b" % i).chars.count("1")
+    end
+    arr.sort_by!{|i| [set_bits_hash[i], i]}
+end
+
+# Results
+Runtime 133ms Beats 20.00% of users with Ruby
+Memory 211.09MBBeats 60.00%of users with Ruby
+# Notes
+It's not the most elegant solution but it does work. To improve performance, I am taking another look at how I can generate the set_bits_hash, I don't think I actually have to count each one...
+
+# Second Solution
+def sort_by_bits(arr)
+    set_bits_hash = {}
+    def count_set_bits(integer)
+        count = 0
+        while integer > 0
+            count += integer & 1
+            integer = integer >> 1
+        end
+        count
+    end
+
+    arr.each do |i|
+     set_bits_hash[i] = count_set_bits(i)
+    end
+    arr.sort_by!{|i| [set_bits_hash[i], i]}
+end
+
+# Results
+Runtime 133ms Beats 40.00% of users with Ruby
+Memory 211.09MB Beats 20.00%of users with Ruby
+# Notes
+Improved some runtime, but still not great and directly at the cost of memory. I still feel like I could speed up the generation of set bits hash, but I will leave this one here.
+
