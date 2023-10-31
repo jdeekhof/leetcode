@@ -37,3 +37,41 @@ Memory 211.09MB Beats 20.00%of users with Ruby
 # Notes
 Improved some runtime, but still not great and directly at the cost of memory. I still feel like I could speed up the generation of set bits hash, but I will leave this one here.
 
+# Recreated Solution
+def sort_by_bits(arr)
+    def sort_by_bits(arr)
+        def count_bit(integer)
+            count = 0
+            while integer != 0
+                count += (integer & 1)
+                integer >>= 1
+            end
+            count
+        end
+
+    n = arr.length
+    stored = Array.new(n)
+    (0...n).each do |i|
+        stored[i] = count_bit(arr[i]) * 10001 + arr[i]
+    end
+    stored.sort!
+    stored.map!{|i| i % 10001}
+end
+
+
+
+(Inspiration)[https://leetcode.com/problems/sort-integers-by-the-number-of-1-bits/solutions/4224589/easiest-possible-approach-bit-manipulation-fastest-too/?envType=daily-question&envId=2023-10-30]
+
+#Results
+Runtime 64ms Beats 100.00%of users with Ruby
+Memory 211.49MB Beats 20.00%of users with Ruby
+
+#Notes
+The correct set of steps was:
+1. Get max index from array provided
+2. Instantiate a new array
+3. Iterate over a range from 0 to max index
+    a. Inside of said loop multiply the number of set bits by (the maximum) integer possibly provided
+    b. Then Add integer to product
+4. Sort the array normally
+5. Undo the shift from loop
