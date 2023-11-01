@@ -1,0 +1,24 @@
+# Solution 1
+def find_array(pref)
+    n = pref.length
+    arr = Array.new(n)
+    memo = pref[0]
+    arr[0] = memo
+    return arr if n == 1
+    (1...n).each do |i|
+        arr[i] = memo ^ pref[i]
+        memo = memo ^ arr[i]
+    end
+    puts arr
+    arr
+end
+
+
+# Results
+Runtime 299ms Beats 63.04%of users with Ruby
+Memory 232.97MB Beats 23.91%of users with Ruby
+
+# Notes
+Most of the difficulty of this one was because I intuitively understood the XOR operator but mathematically did not fully grasp how it could be the inverse of itself.
+Once I figured out some of the other properties, putting together an algorithm was not terribly hard. I had accidentally assigned memo before and had some trouble figuring
+out why my answers were so close to being correct but weren't.
