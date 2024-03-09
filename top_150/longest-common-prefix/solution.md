@@ -20,3 +20,12 @@ Runtime 54ms Beats68.78%of users with JavaScript
 Memory 49.41MB Beats27.73%of users with JavaScript
 
 
+const x = 2;
+let y = 4; 
+function update(arg) 
+    { return Math.random() + 2 * arg; } 
+y = 2; 
+?; 
+const result = update(x);
+
+
